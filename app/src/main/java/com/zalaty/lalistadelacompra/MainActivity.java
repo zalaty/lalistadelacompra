@@ -52,12 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(this);
 
-        //databaseHelper.deleteList(2);
-
-/*        listModelArrayList = databaseHelper.getAllList();
-        listAdapter = new ListAdapter(this, listModelArrayList);
-        listView.setAdapter(listAdapter);*/
         LoadList();
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -91,10 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 //Creating dialog box
                 AlertDialog dialog  = builder.create();
                 dialog.show();
-
-
-
-
             }
         });
 
@@ -141,11 +133,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
-
-        //getting the search view from the menu
-        //MenuItem addProductItem = menu.findItem(R.id.addProduct);
-        //Toast.makeText(this, "You clicked addProduct", Toast.LENGTH_SHORT).show();
-
         return true;
     }
 
@@ -164,13 +151,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuAbout:
                 Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.addProduct:
-                intent = new Intent(this, ProductActivity.class);
-                startActivity(intent);
+            case R.id.goToList:
+                //MainActivity();
                 break;
         }
         //return true;
         return super.onOptionsItemSelected(item);
+    }
+
+    private void MainActivity(){
+        intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void MarketActivity(){

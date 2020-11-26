@@ -15,17 +15,30 @@
         android:theme="@style/ProductBarStyle"
         app:title="@string/product"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/productBackButton"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/productBackButton">
+        android:background="@drawable/ic_launcher_background"
+        android:id="@+id/llButton">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorGreen"/>
 
         <TextView
             android:id="@+id/lstSupermercados"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:textSize="18dp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -40,13 +53,16 @@
             android:background="@drawable/rounded_corners"
             android:text="@string/add"
             android:theme="@style/ButtonStyle" />
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="5"
+            android:id="@+id/llHead"
+            android:layout_below= "@id/llButton">
 
             <TextView
                 android:layout_width="0dp"
@@ -74,6 +90,13 @@
                 android:textStyle="bold"/>
 
         </LinearLayout>
+        <ScrollView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sw_layout"
+            android:layout_above="@+id/footer"
+            android:layout_below= "@id/llHead"
+            android:orientation="horizontal"
+            android:fillViewport="true">
 
         <ListView
             android:layout_width="match_parent"
@@ -82,7 +105,27 @@
             android:layout_below="@id/btnAdd"
             android:id="@+id/lvProduct">
         </ListView>
+        </ScrollView>
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/btnGoToList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/goToList"
+                android:theme="@style/ButtonStyle"
+                android:background="@color/colorGreen"
+                android:textSize="16dp"
+                android:layout_margin="2dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>

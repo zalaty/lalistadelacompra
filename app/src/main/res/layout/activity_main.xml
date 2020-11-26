@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.simplifiedlearning.toolbarexample.MainActivity">
+    tools:context="com.zalaty.lalistadelacompra.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:background="@color/colorPrimary"
         android:layout_alignParentLeft="true"
         android:theme="@style/MainToolBarStyle"
         app:title="@string/app_name"/>
@@ -26,13 +25,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@drawable/ic_launcher_background"
             android:id="@+id/llButton">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorGreen"/>
 
             <TextView
                 android:id="@+id/lstSupermercados"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:textSize="18dp"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -127,7 +133,7 @@
                 android:layout_weight="1"
                 android:text="@string/market"
                 android:theme="@style/ButtonStyle"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorGreen"
                 android:textSize="16dp"
                 android:layout_margin="2dp"/>
 
@@ -138,7 +144,7 @@
                 android:layout_weight="1"
                 android:text="@string/product"
                 android:theme="@style/ButtonStyle"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorGreen"
                 android:textSize="16dp"
                 android:layout_margin="2dp"/>
         </LinearLayout>
