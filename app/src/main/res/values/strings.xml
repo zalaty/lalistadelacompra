@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">La Lista de la Compra</string>
+    <string name="app_name">Lista de la Compra</string>
     <string name="product">Producto</string>
     <string name="market">Supermercado</string>
     <string name="about">Info</string>
@@ -8,7 +8,7 @@
     <string name="zone">Dirección / Zona</string>
     <string name="price">Precio</string>
     <string name="description">Descripción</string>
-    <string name="num">Cantidad:</string>
+    <string name="num">Cantidad</string>
     <string name="save">Guardar</string>
     <string name="update">Actualizar</string>
     <string name="select">-Selecione-</string>
@@ -25,4 +25,5 @@
     <string name="areyousure">¿Estas seguro?</string>
     <string name="nohayproductos">No hay productos</string>
     <string name="debeanadirproductos">Debes crear primero los productos para poder añadirlos a tu lista de la compra.</string>
+    <string name="goToList">Ir a la Lista de la Compra</string>
 </resources>

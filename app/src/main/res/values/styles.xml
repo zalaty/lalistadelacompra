@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorBlack</item>
+        <item name="colorPrimaryDark">@color/colorBlack</item>
+        <item name="colorAccent">@color/colorBlack</item>
     </style>
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:fontFamily">@font/pacifico</item>
@@ -13,17 +13,18 @@
 
     <style name="MainToolBarStyle" parent="Widget.AppCompat.Toolbar">
         <item name="titleTextAppearance">@style/TitleTextAppearance</item>
+        <item name="android:background">@color/colorWhite</item>
         <!--<item name="android:textColorPrimary">@android:color/holo_green_dark</item>-->
         <item name="android:textSize">20sp</item>
     </style>
 
     <style name="MarketBarStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/colorWhite</item>
         <item name="titleTextAppearance">@style/TitleTextAppearance</item>
     </style>
 
     <style name="ProductBarStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/colorWhite</item>
         <item name="titleTextAppearance">@style/TitleTextAppearance</item>
     </style>
 
@@ -44,6 +45,5 @@
     <style name="ButtonStyle" parent="Widget.AppCompat.Button.Colored">
         <item name="android:textColor">@android:color/background_light</item>
     </style>
-
 
 </resources>
