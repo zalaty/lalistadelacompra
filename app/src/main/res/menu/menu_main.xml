@@ -5,7 +5,7 @@
     <!-- our search option -->
     <item
         android:id="@+id/goToList"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        android:icon="@drawable/ic_home_24px"
         android:orderInCategory="100"
         android:title="@string/add"
         app:showAsAction="always" />

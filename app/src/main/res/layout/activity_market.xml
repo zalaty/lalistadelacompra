@@ -108,14 +108,20 @@
 
             <Button
                 android:id="@+id/btnGoToList"
-                android:layout_width="0dp"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="@string/goToList"
+                android:drawableLeft="@drawable/ic_baseline_shopping_cart_24"
+                android:drawableStart="@drawable/ic_baseline_shopping_cart_24"
                 android:theme="@style/ButtonStyle"
                 android:background="@color/colorGreen"
                 android:textSize="16dp"
-                android:layout_margin="2dp"/>
+                android:layout_margin="2dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:paddingLeft="70dp"
+                android:paddingRight="70dp"/>
 
         </LinearLayout>
 
