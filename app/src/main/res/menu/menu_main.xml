@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/menuProduct"
-        android:title="@string/product" />
+        android:title="@string/product"/>
 
     <item
         android:id="@+id/menuMarket"

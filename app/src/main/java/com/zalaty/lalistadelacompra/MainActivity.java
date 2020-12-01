@@ -15,7 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
@@ -31,10 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private Button btnMarket, btnProduct;
     Intent intent;
     private Button btnAdd;
+    private TextView tvAdd;
     private ArrayList<ListModel> listModelArrayList;
     private DatabaseHelper databaseHelper;
     private ListView listView;
     private ListAdapter listAdapter;
+    private LinearLayout llHead,llHeadNoItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +51,10 @@ public class MainActivity extends AppCompatActivity {
         btnMarket = (Button) findViewById(R.id.btnMarket);
         btnProduct = (Button) findViewById(R.id.btnProduct);
         btnAdd = (Button) findViewById(R.id.btnAdd);
-
+        tvAdd = (TextView) findViewById(R.id.tvAdd);
         listView = (ListView) findViewById(R.id.lvList);
+        llHead = (LinearLayout) findViewById(R.id.llHead);
+        llHeadNoItems = (LinearLayout) findViewById(R.id.llHeadNoItems);
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -107,26 +113,16 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (databaseHelper.getAllProducts().size() > 0){
-                    Intent intent = new Intent(MainActivity.this, ListAddActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle(R.string.nohayproductos);
-                    builder.setMessage(R.string.debeanadirproductos);
-                    //builder.setIcon(R.drawable.)
-                    builder.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                    builder.show();
-                }
+                addProduct();
             }
         });
 
+        tvAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addProduct();
+            }
+        });
     }
 
     @Override
@@ -175,13 +171,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void LoadList(){
-        databaseHelper.deleteList(2);
-        databaseHelper.deleteList(3);
-        databaseHelper.deleteList(4);
-        databaseHelper.deleteList(5);
-
         listModelArrayList = databaseHelper.getAllList();
         listAdapter = new ListAdapter(this, listModelArrayList);
         listView.setAdapter(listAdapter);
+        llHead.setVisibility((listModelArrayList.size() > 0) ? View.VISIBLE : View.INVISIBLE);
+        llHeadNoItems.setVisibility((listModelArrayList.size() > 0) ? View.INVISIBLE : View.VISIBLE);
+    }
+
+    private void addProduct(){
+        if (databaseHelper.getAllProducts().size() > 0){
+            Intent intent = new Intent(MainActivity.this, ListAddActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle(R.string.nohayproductos);
+            builder.setMessage(R.string.debeanadirproductos);
+            //builder.setIcon(R.drawable.)
+            builder.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            builder.show();
+        }
     }
 }

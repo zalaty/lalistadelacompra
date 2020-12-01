@@ -45,6 +45,14 @@
             android:layout_gravity="left"
             android:textAlignment="gravity"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/num"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"/>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -53,8 +61,7 @@
             android:background="#fff"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:hint="@string/num"/>
+            android:layout_marginRight="10dp"/>
 
         <Button
             android:id="@+id/btnSave"
