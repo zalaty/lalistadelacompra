@@ -7,20 +7,23 @@
         <item name="colorPrimaryDark">@color/colorBlack</item>
         <item name="colorAccent">@color/colorBlack</item>
     </style>
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+<!--    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:fontFamily">@font/pacifico</item>
-    </style>
+    </style>-->
 
     <style name="MainToolBarStyle" parent="Widget.AppCompat.Toolbar">
         <item name="titleTextAppearance">@style/TitleTextAppearance</item>
-        <item name="android:background">@color/colorWhite</item>
-        <!--<item name="android:textColorPrimary">@android:color/holo_green_dark</item>-->
-        <item name="android:textSize">20sp</item>
+<!--        <item name="android:background">@color/colorWhite</item>-->
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:itemBackground">@color/colorGreenSoft</item>
+        <item name="android:layout_marginTop">3dp</item>
     </style>
 
     <style name="MarketBarStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/colorWhite</item>
         <item name="titleTextAppearance">@style/TitleTextAppearance</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="ProductBarStyle" parent="Widget.AppCompat.Toolbar">

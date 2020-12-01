@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +32,8 @@ public class ProductUpdateDeleteActivity extends AppCompatActivity {
     private Button btnUpdate, btnDelete;;
     private DatabaseHelper databaseHelper;
     List<MarketModel> lstMarkets;
+    private Button btnGoToList;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +67,18 @@ public class ProductUpdateDeleteActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                product.setName(etProductName.getText().toString().trim());
-                product.setDescription(etProductDescription.getText().toString().trim());
-                product.setPrice(Double.parseDouble(etProductPrice.getText().toString()));
-                product.setMarketId((int) ((MarketModel) spProductMarket.getSelectedItem()).getId());
-                databaseHelper.updateProduct(product);
-                Intent intent = new Intent(ProductUpdateDeleteActivity.this,ProductActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                if(etProductName.getText().toString().trim().isEmpty()){
+                    ShowMandatory();
+                }else {
+                    product.setName(etProductName.getText().toString().trim());
+                    product.setDescription(etProductDescription.getText().toString().trim());
+                    product.setPrice(Double.parseDouble(etProductPrice.getText().toString()));
+                    product.setMarketId((int) ((MarketModel) spProductMarket.getSelectedItem()).getId());
+                    databaseHelper.updateProduct(product);
+                    Intent intent = new Intent(ProductUpdateDeleteActivity.this, ProductActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -102,6 +110,19 @@ public class ProductUpdateDeleteActivity extends AppCompatActivity {
             }
         });
 
+        btnGoToList = (Button) findViewById(R.id.btnGoToList);
+
+        btnGoToList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity();
+            }
+        });
+
+    }
+
+    private void ShowMandatory(){
+        Toast.makeText(this, R.string.nameMandatory, Toast.LENGTH_SHORT).show();
     }
 
     private void loadSpinnerData(){
@@ -122,5 +143,50 @@ public class ProductUpdateDeleteActivity extends AppCompatActivity {
             }
         }
         return position;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Intent intent;
+        switch(item.getItemId()){
+            case R.id.menuProduct:
+                ProductActivity();
+                break;
+
+            case R.id.menuMarket:
+                MarketActivity();
+                break;
+
+            case R.id.menuAbout:
+                Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.goToList:
+                MainActivity();
+                break;
+        }
+        //return true;
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void MainActivity(){
+        intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void MarketActivity(){
+        intent = new Intent(this, MarketActivity.class);
+        startActivity(intent);
+    }
+
+    private void ProductActivity(){
+        intent = new Intent(this, ProductActivity.class);
+        startActivity(intent);
     }
 }
