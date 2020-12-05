@@ -89,7 +89,7 @@ public class ListAdapter extends BaseAdapter {
         holder.tvListNum.setText(Integer.toString(num));
         holder.tvListProduct.setText(product.getName());
         price = databaseHelper.getProduct(listModelArrayList.get(position).getProductId()).getPrice();
-        holder.tvListPrice.setText(Double.toString(num * price));
+        holder.tvListPrice.setText(String.format("%.2f", num * price));
 
 
         return convertView;
