@@ -15,25 +15,93 @@
         android:theme="@style/MainToolBarStyle"
         app:title="@string/app_name"/>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorGreen"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:background="@drawable/ic_launcher_background"
-            android:id="@+id/llButton">
+            android:id="@+id/llButton"
+            android:weightSum="3">
 
-            <View
+<!--            <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/colorGreen"/>
+                android:background="@color/colorGreen"/>-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp">
 
-            <TextView
+                <TextView
+                    android:id="@+id/lstSupermercados"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/yourListList" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total"
+                        android:textSize="16dp"></TextView>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total"
+                        android:textSize="16dp"
+                        android:id="@+id/etTotal"></EditText>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/euros"
+                        android:textSize="16dp"></TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|bottom"
+                android:layout_marginTop="30dp">
+
+                <Button
+                    android:id="@+id/btnAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity= "right"
+                    android:background="@drawable/rounded_corners"
+                    android:text="@string/add"
+                    android:theme="@style/ButtonStyle" />
+            </LinearLayout>
+
+<!--            <TextView
                 android:id="@+id/lstSupermercados"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
@@ -42,9 +110,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="@string/yourListList" />
+                android:text="@string/yourListList" />-->
 
-            <Button
+<!--            <Button
                 android:id="@+id/btnAdd"
                 android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
@@ -52,42 +120,65 @@
                 android:layout_gravity= "right"
                 android:background="@drawable/rounded_corners"
                 android:text="@string/add"
-                android:theme="@style/ButtonStyle" />
+                android:theme="@style/ButtonStyle" />-->
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:id="@+id/llHeadNoItems"
             android:layout_below= "@id/llButton">
-            <TextView
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="@string/nohayproductosentulista"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/add"
-                android:textSize="18sp"
-                android:layout_marginLeft="3dp"
-                android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/nohayproductosentulista"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="3dp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:src="@drawable/ic_baseline_shopping_cart_24">
+                </ImageView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:src="@drawable/ic_baseline_shopping_cart_24">
+                android:orientation="horizontal">
 
-            </ImageView>
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:src="@drawable/ic_shoppingtrolleyblack">
+                </ImageView>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -150,6 +241,13 @@
             </ListView>
 
         </ScrollView>
+
+
+
+
+
+
+
 
         <LinearLayout
             android:id="@+id/footer"
