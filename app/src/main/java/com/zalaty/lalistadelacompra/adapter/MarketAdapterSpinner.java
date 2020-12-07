@@ -1,7 +1,6 @@
 package com.zalaty.lalistadelacompra.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,8 +43,6 @@ public class MarketAdapterSpinner extends ArrayAdapter<MarketModel> {
         view.setPadding(10,10,10,10);
         return view;
     }
-
-    //View of Spinner on dropdown Popping
 
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
