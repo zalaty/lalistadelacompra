@@ -71,9 +71,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-/*                Intent intent = new Intent(ProductActivity.this, ProductUpdateDeleteActivity.class);
-                intent.putExtra("product", (Serializable) productModelArrayList.get(position));
-                startActivity(intent);*/
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
@@ -83,10 +80,6 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-/*                                databaseHelper.deleteProduct(product.getId());
-                                Intent intent = new Intent(ProductUpdateDeleteActivity.this,ProductActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);*/
 
                                 databaseHelper.deleteList((listModelArrayList.get(position)).getId());
                                 LoadList(0);
@@ -206,14 +199,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void addProduct(){
         if (databaseHelper.getAllProducts().size() > 0){
-            Intent intent = new Intent(MainActivity.this, ListAddActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            Intent intent = new Intent(getApplicationContext(), ListAddActivity.class);
             startActivity(intent);
         }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle(R.string.nohayproductos);
             builder.setMessage(R.string.debeanadirproductos);
-            //builder.setIcon(R.drawable.)
             builder.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -235,8 +227,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(getApplicationContext(), "Selected User: "+ lstMarkets.get(position).getId(),Toast.LENGTH_SHORT).show();
-                //listModelArrayList = databaseHelper.getAllList((int) ((MarketModel) spMarket.getSelectedItem()).getId());
                 LoadList((int) ((MarketModel) spMarket.getSelectedItem()).getId());
             }
 

@@ -59,13 +59,18 @@
                 android:value=".ProductActivity" />
         </activity>
 
-        <activity android:name=".ListAddActivity"
+<!--        <activity android:name=".ListAddActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+        </activity>-->
+
+        <activity android:name="ListAddActivity"
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
 
-    </application>
+
+</application>
 
 </manifest>

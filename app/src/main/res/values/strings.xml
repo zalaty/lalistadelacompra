@@ -17,6 +17,7 @@
     <string name="yourProductList">Tu listado de Productos:</string>
     <string name="yourListList">Tu listado de la Compra:</string>
     <string name="nameMandatory">El campo Nombre es obligatorio</string>
+    <string name="productMandatory">Debe seleccionar un producto</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="ok">Ok</string>
