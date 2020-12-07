@@ -16,14 +16,18 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
 import com.zalaty.lalistadelacompra.database.ListAdapter;
+import com.zalaty.lalistadelacompra.database.MarketAdapterSpinner;
 import com.zalaty.lalistadelacompra.model.ListModel;
+import com.zalaty.lalistadelacompra.model.MarketModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private ListAdapter listAdapter;
     private LinearLayout llHead;
     private RelativeLayout llHeadNoItems;
+    private Spinner spMarket;
+    List<MarketModel> lstMarkets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +61,12 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.lvList);
         llHead = (LinearLayout) findViewById(R.id.llHead);
         llHeadNoItems = (RelativeLayout) findViewById(R.id.llHeadNoItems);
+        spMarket = (Spinner) findViewById(R.id.spMarket);
 
         databaseHelper = new DatabaseHelper(this);
 
-        LoadList();
+        LoadList(0);
+        loadSpinnerData();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);*/
 
                                 databaseHelper.deleteList((listModelArrayList.get(position)).getId());
-                                LoadList();
+                                LoadList(0);
 
                             }
                         })
@@ -187,8 +195,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void LoadList(){
-        listModelArrayList = databaseHelper.getAllList();
+    private void LoadList(int market_id){
+        listModelArrayList = databaseHelper.getAllList(market_id);
         listAdapter = new ListAdapter(this, listModelArrayList);
         listView.setAdapter(listAdapter);
         llHead.setVisibility((listModelArrayList.size() > 0) ? View.VISIBLE : View.INVISIBLE);
@@ -214,5 +222,29 @@ public class MainActivity extends AppCompatActivity {
             });
             builder.show();
         }
+    }
+
+    private void loadSpinnerData(){
+        lstMarkets = databaseHelper.getAllMarkets();
+        lstMarkets.add(0, new MarketModel(getString(R.string.select)));
+        MarketAdapterSpinner marketAdapterSpinner = new MarketAdapterSpinner(this,android.R.layout.simple_spinner_item, lstMarkets);
+        marketAdapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spMarket.setAdapter(marketAdapterSpinner);
+        spMarket.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(getApplicationContext(), "Selected User: "+ lstMarkets.get(position).getId(),Toast.LENGTH_SHORT).show();
+                //listModelArrayList = databaseHelper.getAllList((int) ((MarketModel) spMarket.getSelectedItem()).getId());
+                LoadList((int) ((MarketModel) spMarket.getSelectedItem()).getId());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+        });
     }
 }

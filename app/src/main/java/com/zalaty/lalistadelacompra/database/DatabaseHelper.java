@@ -14,8 +14,6 @@ import com.zalaty.lalistadelacompra.model.ProductModel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -375,6 +373,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 // adding to todo list
                 lists.add(ls);
+            } while (c.moveToNext());
+        }
+
+        return lists;
+    }
+
+    public ArrayList<ListModel> getAllList(int market_id) {
+        ArrayList<ListModel> lists = new ArrayList<ListModel>();
+        String selectQuery = "SELECT  * FROM " + TABLE_LIST;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                ListModel ls = new ListModel();
+                ls.setId(c.getInt(c.getColumnIndex(KEY_LIST_ID)));
+                ls.setProductIdId(c.getInt(c.getColumnIndex(KEY_LIST_PRODUCTID)));
+                ls.setNum(c.getInt(c.getColumnIndex(KEY_LIST_NUM)));
+
+                // adding to todo list
+                if (market_id == 0 || market_id == getProduct(ls.getProductId()).getMarketId()){
+                    lists.add(ls);
+                }
+
             } while (c.moveToNext());
         }
 
