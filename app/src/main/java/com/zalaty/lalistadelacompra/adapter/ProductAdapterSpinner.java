@@ -38,22 +38,23 @@ public class ProductAdapterSpinner extends ArrayAdapter<ProductModel> {
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView view = new TextView(context);
         view.setTextColor(Color.BLACK);
-        view.setGravity(Gravity.CENTER);
+        view.setGravity(Gravity.CENTER_HORIZONTAL);
+        view.setTextSize(16);
         view.setText(productList.get(position).getName());
-
+        view.setPadding(5,5,5,5);
         return view;
     }
 
     //View of Spinner on dropdown Popping
 
     @Override
-    public View getDropDownView(int position, View convertView,
-                                ViewGroup parent) {
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
         TextView view = new TextView(context);
         view.setTextColor(Color.BLACK);
+        view.setGravity(Gravity.CENTER_HORIZONTAL);
         view.setText(productList.get(position).getName());
-        view.setHeight(60);
-
+        view.setTextSize(20);
+        view.setPadding(10,10,10,10);
         return view;
     }
 

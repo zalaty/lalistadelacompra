@@ -22,10 +22,6 @@ public class MarketAdapter extends BaseAdapter {
         this.marketArrayList = marketArrayList;
     }
 
-//    public MarketAdapter(Context context, int textViewResourceId, ArrayList<MarketModel> marketArrayList){
-//        super(context, textViewResourceId, marketArrayList);
-//    }
-
     @Override
     public int getCount() {
         return marketArrayList.size();

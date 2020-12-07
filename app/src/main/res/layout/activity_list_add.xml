@@ -36,7 +36,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_exit"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginTop="5dp">
 
             </ImageView>
 
@@ -52,7 +53,8 @@
             android:text="@string/product"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack"/>
 
         <Spinner
             android:id="@+id/spListProduct"
@@ -62,8 +64,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:layout_gravity="left"
-            android:textAlignment="gravity"/>
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/colorGreen"
+            android:popupBackground="@color/colorGreen"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,17 +75,17 @@
             android:text="@string/num"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:id="@+id/etListNum"
             android:inputType="number"
-            android:background="#fff"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_margin="20dp"
+            android:gravity="center_horizontal"
+            android:background="@layout/rounded_border_edittext"/>
 
         <Button
             android:id="@+id/btnSave"
