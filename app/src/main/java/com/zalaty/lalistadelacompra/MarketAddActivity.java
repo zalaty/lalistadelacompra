@@ -1,13 +1,10 @@
 package com.zalaty.lalistadelacompra;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,7 +12,7 @@ import android.widget.Toast;
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
 import com.zalaty.lalistadelacompra.model.MarketModel;
 
-public class MarketAddActivity extends AppCompatActivity {
+public class MarketAddActivity extends Activity {
 
     private MarketModel market;
     private EditText etMarketName, etMarketZone;
@@ -27,12 +24,14 @@ public class MarketAddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_market_add);
+        this.setFinishOnTouchOutside(true);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.marketBackButton);
+/*        Toolbar toolbar = (Toolbar) findViewById(R.id.marketBackButton);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -57,21 +56,21 @@ public class MarketAddActivity extends AppCompatActivity {
             }
         });
 
-        btnGoToList = (Button) findViewById(R.id.btnGoToList);
+/*        btnGoToList = (Button) findViewById(R.id.btnGoToList);
 
         btnGoToList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity();
             }
-        });
+        });*/
     }
 
     private void ShowMandatory(){
         Toast.makeText(this, R.string.nameMandatory, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
+ /*   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
@@ -99,9 +98,9 @@ public class MarketAddActivity extends AppCompatActivity {
         }
         //return true;
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
-    private void MainActivity(){
+/*    private void MainActivity(){
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -114,5 +113,5 @@ public class MarketAddActivity extends AppCompatActivity {
     private void ProductActivity(){
         intent = new Intent(this, ProductActivity.class);
         startActivity(intent);
-    }
+    }*/
 }

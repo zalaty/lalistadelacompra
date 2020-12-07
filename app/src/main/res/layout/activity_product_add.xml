@@ -6,20 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.zalaty.lalistadelacompra.ProductActivity">
 
-    <android.support.v7.widget.Toolbar
+<!--    <android.support.v7.widget.Toolbar
         android:id="@+id/productBackButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:theme="@style/ProductBarStyle"
-        app:title="@string/product"/>
+        app:title="@string/product"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/productBackButton">
+        android:orientation="vertical">
 
         <View
             android:layout_width="match_parent"
@@ -105,7 +104,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
+<!--    <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,5 +128,5 @@
             android:paddingLeft="70dp"
             android:paddingRight="70dp"/>
 
-    </LinearLayout>
+    </LinearLayout>-->
 </RelativeLayout>

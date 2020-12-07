@@ -38,18 +38,26 @@
                 android:value=".MarketActivity" />
         </activity>
 
-        <activity android:name=".MarketAddActivity"
+<!--        <activity android:name=".MarketAddActivity"
             android:parentActivityName=".MarketActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MarketActivity" />
+        </activity>-->
+
+        <activity android:name="MarketAddActivity"
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
 
-        <activity android:name=".ProductAddActivity"
+<!--        <activity android:name=".ProductAddActivity"
             android:parentActivityName=".ProductActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ProductActivity" />
+        </activity>-->
+
+        <activity android:name="ProductAddActivity"
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
 
         <activity android:name=".ProductUpdateDeleteActivity"

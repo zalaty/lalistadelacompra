@@ -1,5 +1,6 @@
 package com.zalaty.lalistadelacompra;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +24,7 @@ import com.zalaty.lalistadelacompra.model.ProductModel;
 
 import java.util.List;
 
-public class ProductAddActivity extends AppCompatActivity {
+public class ProductAddActivity extends Activity {
 
     private ProductModel product;
     private EditText etProductName, etProductDescription, etProductPrice;
@@ -36,12 +38,14 @@ public class ProductAddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_product_add);
+        this.setFinishOnTouchOutside(true);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.productBackButton);
+/*        Toolbar toolbar = (Toolbar) findViewById(R.id.productBackButton);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -70,14 +74,14 @@ public class ProductAddActivity extends AppCompatActivity {
             }
         });
 
-        btnGoToList = (Button) findViewById(R.id.btnGoToList);
+/*        btnGoToList = (Button) findViewById(R.id.btnGoToList);
 
         btnGoToList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity();
             }
-        });
+        });*/
     }
 
     private void loadSpinnerData(){
@@ -106,7 +110,7 @@ public class ProductAddActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.nameMandatory, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
+ /*   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
@@ -149,5 +153,5 @@ public class ProductAddActivity extends AppCompatActivity {
     private void ProductActivity(){
         intent = new Intent(this, ProductActivity.class);
         startActivity(intent);
-    }
+    }*/
 }

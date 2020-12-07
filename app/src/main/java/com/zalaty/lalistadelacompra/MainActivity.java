@@ -199,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void addProduct(){
         if (databaseHelper.getAllProducts().size() > 0){
-
             Intent intent = new Intent(getApplicationContext(), ListAddActivity.class);
             startActivity(intent);
         }else{
