@@ -1,4 +1,4 @@
-package com.zalaty.lalistadelacompra.database;
+package com.zalaty.lalistadelacompra.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

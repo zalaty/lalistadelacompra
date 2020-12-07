@@ -14,7 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
-import com.zalaty.lalistadelacompra.database.ProductAdapterSpinner;
+import com.zalaty.lalistadelacompra.adapter.ProductAdapterSpinner;
 import com.zalaty.lalistadelacompra.model.ListModel;
 import com.zalaty.lalistadelacompra.model.ProductModel;
 
@@ -79,7 +79,6 @@ public class ListAddActivity extends Activity {
         lstProducts = databaseHelper.getAllProducts();
         lstProducts.add(0, new ProductModel(getString(R.string.select)));
         ProductAdapterSpinner productAdapterSpinner = new ProductAdapterSpinner(this,android.R.layout.simple_spinner_item, lstProducts);
-
         productAdapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spListProduct.setAdapter(productAdapterSpinner);

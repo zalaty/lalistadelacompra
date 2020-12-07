@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
-import com.zalaty.lalistadelacompra.database.ProductAdapter;
+import com.zalaty.lalistadelacompra.adapter.ProductAdapter;
 import com.zalaty.lalistadelacompra.model.ProductModel;
 
 import java.io.Serializable;

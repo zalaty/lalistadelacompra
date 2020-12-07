@@ -16,7 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
-import com.zalaty.lalistadelacompra.database.MarketAdapterSpinner;
+import com.zalaty.lalistadelacompra.adapter.MarketAdapterSpinner;
 import com.zalaty.lalistadelacompra.model.MarketModel;
 import com.zalaty.lalistadelacompra.model.ProductModel;
 

@@ -1,4 +1,4 @@
-package com.zalaty.lalistadelacompra.database;
+package com.zalaty.lalistadelacompra.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zalaty.lalistadelacompra.R;
+import com.zalaty.lalistadelacompra.database.DatabaseHelper;
 import com.zalaty.lalistadelacompra.model.MarketModel;
 import com.zalaty.lalistadelacompra.model.ProductModel;
 
