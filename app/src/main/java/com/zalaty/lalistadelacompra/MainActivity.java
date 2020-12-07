@@ -1,13 +1,10 @@
 package com.zalaty.lalistadelacompra;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,18 +12,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
 import com.zalaty.lalistadelacompra.database.ListAdapter;
-import com.zalaty.lalistadelacompra.database.ProductAdapter;
+import com.zalaty.lalistadelacompra.database.MarketAdapterSpinner;
 import com.zalaty.lalistadelacompra.model.ListModel;
-import com.zalaty.lalistadelacompra.model.ProductModel;
+import com.zalaty.lalistadelacompra.model.MarketModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,11 +35,15 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     private Button btnAdd;
     private TextView tvAdd;
+    private EditText etTotal;
     private ArrayList<ListModel> listModelArrayList;
     private DatabaseHelper databaseHelper;
     private ListView listView;
     private ListAdapter listAdapter;
-    private LinearLayout llHead,llHeadNoItems;
+    private LinearLayout llHead;
+    private RelativeLayout llHeadNoItems;
+    private Spinner spMarket;
+    List<MarketModel> lstMarkets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +57,16 @@ public class MainActivity extends AppCompatActivity {
         btnProduct = (Button) findViewById(R.id.btnProduct);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         tvAdd = (TextView) findViewById(R.id.tvAdd);
+        etTotal = (EditText) findViewById(R.id.etTotal);
         listView = (ListView) findViewById(R.id.lvList);
         llHead = (LinearLayout) findViewById(R.id.llHead);
-        llHeadNoItems = (LinearLayout) findViewById(R.id.llHeadNoItems);
+        llHeadNoItems = (RelativeLayout) findViewById(R.id.llHeadNoItems);
+        spMarket = (Spinner) findViewById(R.id.spMarket);
 
         databaseHelper = new DatabaseHelper(this);
 
-        LoadList();
+        LoadList(0);
+        loadSpinnerData();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);*/
 
                                 databaseHelper.deleteList((listModelArrayList.get(position)).getId());
-                                LoadList();
+                                LoadList(0);
 
                             }
                         })
@@ -123,6 +131,23 @@ public class MainActivity extends AppCompatActivity {
                 addProduct();
             }
         });
+    }
+
+
+    private void setTotal(){
+        Double total = 0.0;
+        int num;
+        Double price;
+
+        if (listModelArrayList.size() > 0){
+            for (int i = 0; i < listModelArrayList.size(); i++)
+            {
+                num = listModelArrayList.get(i).getNum();
+                price = databaseHelper.getProduct(listModelArrayList.get(i).getProductId()).getPrice();
+                total = total + (price * num);
+            }
+        }
+        etTotal.setText(String.format("%.2f",total));
     }
 
     @Override
@@ -170,12 +195,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void LoadList(){
-        listModelArrayList = databaseHelper.getAllList();
+    private void LoadList(int market_id){
+        listModelArrayList = databaseHelper.getAllList(market_id);
         listAdapter = new ListAdapter(this, listModelArrayList);
         listView.setAdapter(listAdapter);
         llHead.setVisibility((listModelArrayList.size() > 0) ? View.VISIBLE : View.INVISIBLE);
         llHeadNoItems.setVisibility((listModelArrayList.size() > 0) ? View.INVISIBLE : View.VISIBLE);
+        setTotal();
     }
 
     private void addProduct(){
@@ -191,10 +217,34 @@ public class MainActivity extends AppCompatActivity {
             builder.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
+                    ProductActivity();
                 }
             });
             builder.show();
         }
+    }
+
+    private void loadSpinnerData(){
+        lstMarkets = databaseHelper.getAllMarkets();
+        lstMarkets.add(0, new MarketModel(getString(R.string.select)));
+        MarketAdapterSpinner marketAdapterSpinner = new MarketAdapterSpinner(this,android.R.layout.simple_spinner_item, lstMarkets);
+        marketAdapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spMarket.setAdapter(marketAdapterSpinner);
+        spMarket.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(getApplicationContext(), "Selected User: "+ lstMarkets.get(position).getId(),Toast.LENGTH_SHORT).show();
+                //listModelArrayList = databaseHelper.getAllList((int) ((MarketModel) spMarket.getSelectedItem()).getId());
+                LoadList((int) ((MarketModel) spMarket.getSelectedItem()).getId());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+        });
     }
 }

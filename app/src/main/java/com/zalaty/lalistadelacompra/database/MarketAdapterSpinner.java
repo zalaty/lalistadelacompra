@@ -38,7 +38,7 @@ public class MarketAdapterSpinner extends ArrayAdapter<MarketModel> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView view = new TextView(context);
-        view.setGravity(Gravity.LEFT);
+        view.setGravity(Gravity.CENTER_HORIZONTAL);
         view.setTextSize(20);
         view.setText(marketList.get(position).getName());
         view.setPadding(10,10,10,10);
@@ -50,6 +50,7 @@ public class MarketAdapterSpinner extends ArrayAdapter<MarketModel> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         TextView view = new TextView(context);
+        view.setGravity(Gravity.CENTER_HORIZONTAL);
         view.setText(marketList.get(position).getName());
         view.setTextSize(20);
         view.setPadding(10,10,10,10);

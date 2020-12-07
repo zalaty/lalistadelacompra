@@ -20,7 +20,6 @@ import com.zalaty.lalistadelacompra.database.MarketAdapterSpinner;
 import com.zalaty.lalistadelacompra.model.MarketModel;
 import com.zalaty.lalistadelacompra.model.ProductModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductUpdateDeleteActivity extends AppCompatActivity {
