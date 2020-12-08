@@ -37,6 +37,7 @@ public class ProductAdapterSpinner extends ArrayAdapter<ProductModel> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView view = new TextView(context);
+        view.setTextColor(Color.BLACK);
         view.setGravity(Gravity.CENTER_HORIZONTAL);
         view.setTextSize(16);
         view.setText(productList.get(position).getName());

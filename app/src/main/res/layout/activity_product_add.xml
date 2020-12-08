@@ -85,8 +85,8 @@
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:background="@color/colorGreen"
-            android:popupBackground="@color/colorGreen"/>
+            android:background="@color/colorGreenSoft"
+            android:popupBackground="@color/colorGreenSoft"/>
 
         <TextView
             android:layout_width="wrap_content"

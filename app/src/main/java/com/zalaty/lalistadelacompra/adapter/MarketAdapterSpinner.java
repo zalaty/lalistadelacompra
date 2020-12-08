@@ -1,6 +1,7 @@
 package com.zalaty.lalistadelacompra.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class MarketAdapterSpinner extends ArrayAdapter<MarketModel> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView view = new TextView(context);
+        view.setTextColor(Color.BLACK);
         view.setGravity(Gravity.CENTER_HORIZONTAL);
         view.setTextSize(20);
         view.setText(marketList.get(position).getName());
