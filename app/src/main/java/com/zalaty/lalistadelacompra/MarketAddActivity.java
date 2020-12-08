@@ -43,7 +43,7 @@ public class MarketAddActivity extends Activity {
                 }else{
                     market = new MarketModel(etMarketName.getText().toString().trim(), etMarketZone.getText().toString().trim());
                     databaseHelper.createMarket(market);
-                    Intent intent = new Intent(MarketAddActivity.this,MainActivity.class);
+                    Intent intent = new Intent(MarketAddActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }

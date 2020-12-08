@@ -233,7 +233,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         infoDialog.show();
-
     }
 
     private void loadSpinnerData(){

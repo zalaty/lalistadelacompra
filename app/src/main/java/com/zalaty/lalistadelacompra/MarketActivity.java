@@ -2,8 +2,10 @@ package com.zalaty.lalistadelacompra;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -107,6 +109,9 @@ public class MarketActivity extends AppCompatActivity {
             case R.id.goToList:
                 MainActivity();
                 break;
+            case R.id.info:
+                info();
+                break;
         }
         //return true;
         return super.onOptionsItemSelected(item);
@@ -117,7 +122,22 @@ public class MarketActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void MarketActivity(){
+    private void info(){
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View infoDialogView = factory.inflate(R.layout.custom_dialog, null);
+        final AlertDialog infoDialog = new AlertDialog.Builder(this).create();
+        infoDialog.setView(infoDialogView);
+        infoDialogView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //your business logic
+                infoDialog.dismiss();
+            }
+        });
+        infoDialog.show();
+    }
+
+/*    private void MarketActivity(){
         intent = new Intent(this, MarketActivity.class);
         startActivity(intent);
     }
@@ -125,5 +145,5 @@ public class MarketActivity extends AppCompatActivity {
     private void ProductActivity(){
         intent = new Intent(this, ProductActivity.class);
         startActivity(intent);
-    }
+    }*/
 }

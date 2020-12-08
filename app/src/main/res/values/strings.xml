@@ -13,6 +13,7 @@
     <string name="update">Actualizar</string>
     <string name="select">-Selecione-</string>
     <string name="delete">Eliminar</string>
+    <string name="updatedelete">Actualizar / Eliminar</string>
     <string name="yourMarketList">Tu listado de Supermercados:</string>
     <string name="yourProductList">Tu listado de Productos:</string>
     <string name="yourListList">Tu listado de la Compra:</string>
