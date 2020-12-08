@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_shoppingtrolleyblack"
+        android:icon="@drawable/ic_shoppingtrolleyblack_24"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_shoppingtrolleyblack"
+        android:roundIcon="@drawable/ic_shoppingtrolleyblack_24"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">

@@ -65,9 +65,6 @@ public class MarketActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-/*                Intent intent = new Intent(MarketActivity.this, MarketAddActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);*/
                 Intent intent = new Intent(getApplicationContext(), MarketAddActivity.class);
                 startActivity(intent);
             }

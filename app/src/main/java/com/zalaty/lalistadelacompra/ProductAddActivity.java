@@ -14,6 +14,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -32,8 +33,7 @@ public class ProductAddActivity extends Activity {
     private Button btnSave;
     private DatabaseHelper databaseHelper;
     List<MarketModel> lstMarkets;
-    private Button btnGoToList;
-    Intent intent;
+    private ImageView ivExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +42,6 @@ public class ProductAddActivity extends Activity {
         setContentView(R.layout.activity_product_add);
         this.setFinishOnTouchOutside(true);
 
-/*        Toolbar toolbar = (Toolbar) findViewById(R.id.productBackButton);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
-
         databaseHelper = new DatabaseHelper(this);
 
         etProductName = (EditText) findViewById(R.id.etProductName);
@@ -54,6 +49,7 @@ public class ProductAddActivity extends Activity {
         etProductPrice = (EditText) findViewById(R.id.etProductPrice);
         spProductMarket = (Spinner) findViewById(R.id.spProductMarket);
         btnSave = (Button) findViewById(R.id.btnSave);
+        ivExit = (ImageView) findViewById(R.id.ivExit);
 
         loadSpinnerData();
 
@@ -66,22 +62,19 @@ public class ProductAddActivity extends Activity {
                     Double price = TextUtils.isEmpty(etProductPrice.getText().toString()) ? 0 : Double.parseDouble(etProductPrice.getText().toString()) ;
                     product = new ProductModel(etProductName.getText().toString().trim(), etProductDescription.getText().toString().trim(), price, (int) ((MarketModel) spProductMarket.getSelectedItem()).getId());
                     databaseHelper.createProduct(product);
-                    //Toast.makeText(ProductAddActivity.this, "Saved Successfully!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ProductAddActivity.this, ProductActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent = new Intent(ProductAddActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }
         });
 
-/*        btnGoToList = (Button) findViewById(R.id.btnGoToList);
-
-        btnGoToList.setOnClickListener(new View.OnClickListener() {
+        ivExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity();
+                finish();
             }
-        });*/
+        });
+
     }
 
     private void loadSpinnerData(){
@@ -109,49 +102,4 @@ public class ProductAddActivity extends Activity {
     private void ShowMandatory(){
         Toast.makeText(this, R.string.nameMandatory, Toast.LENGTH_SHORT).show();
     }
-
- /*   @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //Intent intent;
-        switch(item.getItemId()){
-            case R.id.menuProduct:
-                ProductActivity();
-                break;
-
-            case R.id.menuMarket:
-                MarketActivity();
-                break;
-
-            case R.id.menuAbout:
-                Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.goToList:
-                MainActivity();
-                break;
-        }
-        //return true;
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void MainActivity(){
-        intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    private void MarketActivity(){
-        intent = new Intent(this, MarketActivity.class);
-        startActivity(intent);
-    }
-
-    private void ProductActivity(){
-        intent = new Intent(this, ProductActivity.class);
-        startActivity(intent);
-    }*/
 }

@@ -30,4 +30,5 @@
     <string name="nohayproductosentulista">No tienes productos en tu lista. Pulsa </string>
     <string name="total">Total</string>
     <string name="euros">€</string>
+    <string name="marketfilter">- Filtrar por supermercado -</string>
 </resources>

@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadSpinnerData(){
         lstMarkets = databaseHelper.getAllMarkets();
-        lstMarkets.add(0, new MarketModel(getString(R.string.select)));
+        lstMarkets.add(0, new MarketModel(getString(R.string.marketfilter)));
         MarketAdapterSpinner marketAdapterSpinner = new MarketAdapterSpinner(this,android.R.layout.simple_spinner_item, lstMarkets);
         marketAdapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

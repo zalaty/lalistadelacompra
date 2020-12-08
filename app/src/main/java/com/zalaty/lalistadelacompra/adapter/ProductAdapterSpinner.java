@@ -37,11 +37,10 @@ public class ProductAdapterSpinner extends ArrayAdapter<ProductModel> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView view = new TextView(context);
-        view.setTextColor(Color.BLACK);
         view.setGravity(Gravity.CENTER_HORIZONTAL);
         view.setTextSize(16);
         view.setText(productList.get(position).getName());
-        view.setPadding(5,5,5,5);
+        view.setPadding(10,10,10,10);
         return view;
     }
 
@@ -50,7 +49,6 @@ public class ProductAdapterSpinner extends ArrayAdapter<ProductModel> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         TextView view = new TextView(context);
-        view.setTextColor(Color.BLACK);
         view.setGravity(Gravity.CENTER_HORIZONTAL);
         view.setText(productList.get(position).getName());
         view.setTextSize(20);
