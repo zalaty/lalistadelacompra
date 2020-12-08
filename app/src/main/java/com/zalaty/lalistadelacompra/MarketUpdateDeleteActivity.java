@@ -122,7 +122,7 @@ public class MarketUpdateDeleteActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //Intent intent;
         switch(item.getItemId()){
-            case R.id.menuProduct:
+/*            case R.id.menuProduct:
                 ProductActivity();
                 break;
 
@@ -132,7 +132,7 @@ public class MarketUpdateDeleteActivity extends AppCompatActivity {
 
             case R.id.menuAbout:
                 Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
-                break;
+                break;*/
             case R.id.goToList:
                 MainActivity();
                 break;

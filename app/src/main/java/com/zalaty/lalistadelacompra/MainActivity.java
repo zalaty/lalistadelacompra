@@ -6,10 +6,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -154,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //Intent intent;
         switch(item.getItemId()){
-            case R.id.menuProduct:
+/*            case R.id.menuProduct:
                 ProductActivity();
                 break;
 
@@ -164,9 +166,12 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.menuAbout:
                 Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
-                break;
+                break;*/
             case R.id.goToList:
                 //MainActivity();
+                break;
+            case R.id.info:
+                info();
                 break;
         }
         //return true;
@@ -213,6 +218,22 @@ public class MainActivity extends AppCompatActivity {
             });
             builder.show();
         }
+    }
+
+    private void info(){
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View infoDialogView = factory.inflate(R.layout.custom_dialog, null);
+        final AlertDialog infoDialog = new AlertDialog.Builder(this).create();
+        infoDialog.setView(infoDialogView);
+        infoDialogView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //your business logic
+                infoDialog.dismiss();
+            }
+        });
+        infoDialog.show();
+
     }
 
     private void loadSpinnerData(){

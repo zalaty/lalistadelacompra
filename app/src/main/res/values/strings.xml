@@ -31,4 +31,9 @@
     <string name="total">Total</string>
     <string name="euros">€</string>
     <string name="marketfilter">- Filtrar por supermercado -</string>
+    <string name="info">info</string>
+    <string name="infodavid">David Salado Fornell</string>
+    <string name="infotext">Si tienes alguna sugerencias, puedes contactarme:</string>
+    <string name="infoemail"> david.salfor@gmail.com</string>
+    <string name="infogracias">Gracias</string>
 </resources>
