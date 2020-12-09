@@ -28,7 +28,8 @@
     <string name="nohayproductos">No hay productos</string>
     <string name="debeanadirproductos">Debes crear primero los productos para poder añadirlos a tu lista de la compra.</string>
     <string name="goToList">Ir a la Lista de la Compra</string>
-    <string name="nohayproductosentulista">No tienes productos en tu lista. Pulsa </string>
+    <string name="nohayproductosentulista">No tienes productos para la tienda seleccionada.</string>
+    <string name="pulsa">Pulsa</string>
     <string name="total">Total</string>
     <string name="euros">€</string>
     <string name="marketfilter">- Filtrar por tienda -</string>

@@ -14,9 +14,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -35,13 +35,14 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     private Button btnAdd;
     private TextView tvAdd;
+    private ImageView ivAdd;
     private EditText etTotal;
     private ArrayList<ListModel> listModelArrayList;
     private DatabaseHelper databaseHelper;
     private ListView listView;
     private ListAdapter listAdapter;
     private LinearLayout llHead;
-    private RelativeLayout llHeadNoItems;
+    private LinearLayout llHeadNoItems;
     private Spinner spMarket;
     List<MarketModel> lstMarkets;
 
@@ -57,10 +58,11 @@ public class MainActivity extends AppCompatActivity {
         btnProduct = (Button) findViewById(R.id.btnProduct);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         tvAdd = (TextView) findViewById(R.id.tvAdd);
+        ivAdd = (ImageView) findViewById(R.id.ivAdd);
         etTotal = (EditText) findViewById(R.id.etTotal);
         listView = (ListView) findViewById(R.id.lvList);
         llHead = (LinearLayout) findViewById(R.id.llHead);
-        llHeadNoItems = (RelativeLayout) findViewById(R.id.llHeadNoItems);
+        llHeadNoItems = (LinearLayout) findViewById(R.id.llHeadNoItems);
         spMarket = (Spinner) findViewById(R.id.spMarket);
 
         databaseHelper = new DatabaseHelper(this);
@@ -120,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         tvAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addProduct();
+            }
+        });
+
+        ivAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addProduct();

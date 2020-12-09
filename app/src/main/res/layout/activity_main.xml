@@ -98,7 +98,7 @@
 
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
@@ -107,7 +107,7 @@
             android:layout_below= "@id/llButton">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -116,6 +116,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="@string/nohayproductosentulista"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/pulsa"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -129,6 +144,7 @@
                     android:textStyle="bold"/>
 
                 <ImageView
+                    android:id="@+id/ivAdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
@@ -140,20 +156,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="100dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="40dp"
-                    android:layout_marginBottom="40dp"
                     android:src="@drawable/ic_shoppingtrolleyblack">
                 </ImageView>
 
             </LinearLayout>
 
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
