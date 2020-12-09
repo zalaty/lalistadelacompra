@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Lista de la Compra</string>
     <string name="product">Producto</string>
-    <string name="market">Supermercado</string>
+    <string name="market">Tienda</string>
     <string name="about">Info</string>
     <string name="add">Añadir</string>
     <string name="name">Nombre</string>
@@ -13,20 +13,29 @@
     <string name="update">Actualizar</string>
     <string name="select">-Selecione-</string>
     <string name="delete">Eliminar</string>
-    <string name="yourMarketList">Tu listado de Supermercados:</string>
+    <string name="updatedelete">Actualizar / Eliminar</string>
+    <string name="yourMarketList">Tu listado de Tiendas:</string>
     <string name="yourProductList">Tu listado de Productos:</string>
     <string name="yourListList">Tu listado de la Compra:</string>
     <string name="nameMandatory">El campo Nombre es obligatorio</string>
+    <string name="productMandatory">Debe seleccionar un producto</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="ok">Ok</string>
-    <string name="deleteMarket">Eliminar supermercado</string>
+    <string name="deleteMarket">Eliminar tienda</string>
     <string name="deleteProduct">Eliminar producto</string>
     <string name="areyousure">¿Estas seguro?</string>
     <string name="nohayproductos">No hay productos</string>
     <string name="debeanadirproductos">Debes crear primero los productos para poder añadirlos a tu lista de la compra.</string>
     <string name="goToList">Ir a la Lista de la Compra</string>
-    <string name="nohayproductosentulista">No tienes productos en tu lista. Pulsa </string>
+    <string name="nohayproductosentulista">No tienes productos para la tienda seleccionada.</string>
+    <string name="pulsa">Pulsa</string>
     <string name="total">Total</string>
     <string name="euros">€</string>
+    <string name="marketfilter">- Filtrar por tienda -</string>
+    <string name="info">info</string>
+    <string name="infodavid">David Salado Fornell</string>
+    <string name="infotext">Si tienes alguna sugerencias, puedes contactarme:</string>
+    <string name="infoemail"> david.salfor@gmail.com</string>
+    <string name="infogracias">Gracias</string>
 </resources>

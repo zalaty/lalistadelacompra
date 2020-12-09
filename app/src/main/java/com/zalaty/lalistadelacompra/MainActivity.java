@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,16 +14,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
-import com.zalaty.lalistadelacompra.database.ListAdapter;
-import com.zalaty.lalistadelacompra.database.MarketAdapterSpinner;
+import com.zalaty.lalistadelacompra.adapter.ListAdapter;
+import com.zalaty.lalistadelacompra.adapter.MarketAdapterSpinner;
 import com.zalaty.lalistadelacompra.model.ListModel;
 import com.zalaty.lalistadelacompra.model.MarketModel;
 
@@ -35,13 +35,14 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     private Button btnAdd;
     private TextView tvAdd;
+    private ImageView ivAdd;
     private EditText etTotal;
     private ArrayList<ListModel> listModelArrayList;
     private DatabaseHelper databaseHelper;
     private ListView listView;
     private ListAdapter listAdapter;
     private LinearLayout llHead;
-    private RelativeLayout llHeadNoItems;
+    private LinearLayout llHeadNoItems;
     private Spinner spMarket;
     List<MarketModel> lstMarkets;
 
@@ -57,10 +58,11 @@ public class MainActivity extends AppCompatActivity {
         btnProduct = (Button) findViewById(R.id.btnProduct);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         tvAdd = (TextView) findViewById(R.id.tvAdd);
+        ivAdd = (ImageView) findViewById(R.id.ivAdd);
         etTotal = (EditText) findViewById(R.id.etTotal);
         listView = (ListView) findViewById(R.id.lvList);
         llHead = (LinearLayout) findViewById(R.id.llHead);
-        llHeadNoItems = (RelativeLayout) findViewById(R.id.llHeadNoItems);
+        llHeadNoItems = (LinearLayout) findViewById(R.id.llHeadNoItems);
         spMarket = (Spinner) findViewById(R.id.spMarket);
 
         databaseHelper = new DatabaseHelper(this);
@@ -71,9 +73,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-/*                Intent intent = new Intent(ProductActivity.this, ProductUpdateDeleteActivity.class);
-                intent.putExtra("product", (Serializable) productModelArrayList.get(position));
-                startActivity(intent);*/
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
@@ -83,13 +82,10 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-/*                                databaseHelper.deleteProduct(product.getId());
-                                Intent intent = new Intent(ProductUpdateDeleteActivity.this,ProductActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);*/
 
                                 databaseHelper.deleteList((listModelArrayList.get(position)).getId());
                                 LoadList(0);
+                                loadSpinnerData();
 
                             }
                         })
@@ -131,6 +127,13 @@ public class MainActivity extends AppCompatActivity {
                 addProduct();
             }
         });
+
+        ivAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addProduct();
+            }
+        });
     }
 
 
@@ -159,30 +162,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //Intent intent;
         switch(item.getItemId()){
-            case R.id.menuProduct:
-                ProductActivity();
-                break;
-
-            case R.id.menuMarket:
-                MarketActivity();
-                break;
-
-            case R.id.menuAbout:
-                Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.goToList:
                 //MainActivity();
                 break;
+            case R.id.info:
+                info();
+                break;
         }
-        //return true;
-        return super.onOptionsItemSelected(item);
-    }
 
-    private void MainActivity(){
-        intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 
     private void MarketActivity(){
@@ -206,14 +195,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void addProduct(){
         if (databaseHelper.getAllProducts().size() > 0){
-            Intent intent = new Intent(MainActivity.this, ListAddActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent intent = new Intent(getApplicationContext(), ListAddActivity.class);
             startActivity(intent);
         }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle(R.string.nohayproductos);
             builder.setMessage(R.string.debeanadirproductos);
-            //builder.setIcon(R.drawable.)
             builder.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -224,9 +211,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void info(){
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View infoDialogView = factory.inflate(R.layout.custom_dialog, null);
+        final AlertDialog infoDialog = new AlertDialog.Builder(this).create();
+        infoDialog.setView(infoDialogView);
+        infoDialogView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                infoDialog.dismiss();
+            }
+        });
+        infoDialog.show();
+    }
+
     private void loadSpinnerData(){
         lstMarkets = databaseHelper.getAllMarkets();
-        lstMarkets.add(0, new MarketModel(getString(R.string.select)));
+        lstMarkets.add(0, new MarketModel(getString(R.string.marketfilter)));
         MarketAdapterSpinner marketAdapterSpinner = new MarketAdapterSpinner(this,android.R.layout.simple_spinner_item, lstMarkets);
         marketAdapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -235,8 +236,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(getApplicationContext(), "Selected User: "+ lstMarkets.get(position).getId(),Toast.LENGTH_SHORT).show();
-                //listModelArrayList = databaseHelper.getAllList((int) ((MarketModel) spMarket.getSelectedItem()).getId());
                 LoadList((int) ((MarketModel) spMarket.getSelectedItem()).getId());
             }
 

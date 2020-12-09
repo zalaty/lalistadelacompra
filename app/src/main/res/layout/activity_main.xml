@@ -15,7 +15,6 @@
         android:theme="@style/MainToolBarStyle"
         app:title="@string/app_name"/>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,10 +34,6 @@
             android:id="@+id/llButton"
             android:weightSum="3">
 
-<!--            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorGreen"/>-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -101,30 +96,9 @@
                     android:theme="@style/ButtonStyle" />
             </LinearLayout>
 
-<!--            <TextView
-                android:id="@+id/lstSupermercados"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="@string/yourListList" />-->
-
-<!--            <Button
-                android:id="@+id/btnAdd"
-                android:layout_marginRight="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity= "right"
-                android:background="@drawable/rounded_corners"
-                android:text="@string/add"
-                android:theme="@style/ButtonStyle" />-->
-
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
@@ -133,7 +107,7 @@
             android:layout_below= "@id/llButton">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -142,6 +116,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="@string/nohayproductosentulista"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/pulsa"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -155,6 +144,7 @@
                     android:textStyle="bold"/>
 
                 <ImageView
+                    android:id="@+id/ivAdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
@@ -166,7 +156,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="100dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -178,7 +169,7 @@
             </LinearLayout>
 
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

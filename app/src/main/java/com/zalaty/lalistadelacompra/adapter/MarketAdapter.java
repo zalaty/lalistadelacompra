@@ -1,4 +1,4 @@
-package com.zalaty.lalistadelacompra.database;
+package com.zalaty.lalistadelacompra.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -21,10 +21,6 @@ public class MarketAdapter extends BaseAdapter {
         this.context = context;
         this.marketArrayList = marketArrayList;
     }
-
-//    public MarketAdapter(Context context, int textViewResourceId, ArrayList<MarketModel> marketArrayList){
-//        super(context, textViewResourceId, marketArrayList);
-//    }
 
     @Override
     public int getCount() {

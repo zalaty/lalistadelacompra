@@ -2,8 +2,10 @@ package com.zalaty.lalistadelacompra;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,10 +13,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
-import com.zalaty.lalistadelacompra.database.ProductAdapter;
+import com.zalaty.lalistadelacompra.adapter.ProductAdapter;
 import com.zalaty.lalistadelacompra.model.ProductModel;
 
 import java.io.Serializable;
@@ -67,8 +68,7 @@ public class ProductActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductActivity.this, ProductAddActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent = new Intent(getApplicationContext(), ProductAddActivity.class);
                 startActivity(intent);
             }
         });
@@ -95,22 +95,14 @@ public class ProductActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //Intent intent;
         switch(item.getItemId()){
-            case R.id.menuProduct:
-                ProductActivity();
-                break;
-
-            case R.id.menuMarket:
-                MarketActivity();
-                break;
-
-            case R.id.menuAbout:
-                Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.goToList:
                 MainActivity();
                 break;
+            case R.id.info:
+                info();
+                break;
         }
-        //return true;
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -119,13 +111,19 @@ public class ProductActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void MarketActivity(){
-        intent = new Intent(this, MarketActivity.class);
-        startActivity(intent);
+    private void info(){
+        LayoutInflater factory = LayoutInflater.from(this);
+        final View infoDialogView = factory.inflate(R.layout.custom_dialog, null);
+        final AlertDialog infoDialog = new AlertDialog.Builder(this).create();
+        infoDialog.setView(infoDialogView);
+        infoDialogView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //your business logic
+                infoDialog.dismiss();
+            }
+        });
+        infoDialog.show();
     }
 
-    private void ProductActivity(){
-        intent = new Intent(this, ProductActivity.class);
-        startActivity(intent);
-    }
 }

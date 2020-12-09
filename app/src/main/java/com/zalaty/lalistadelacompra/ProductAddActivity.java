@@ -1,28 +1,26 @@
 package com.zalaty.lalistadelacompra;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
-import com.zalaty.lalistadelacompra.database.MarketAdapterSpinner;
+import com.zalaty.lalistadelacompra.adapter.MarketAdapterSpinner;
 import com.zalaty.lalistadelacompra.model.MarketModel;
 import com.zalaty.lalistadelacompra.model.ProductModel;
 
 import java.util.List;
 
-public class ProductAddActivity extends AppCompatActivity {
+public class ProductAddActivity extends Activity {
 
     private ProductModel product;
     private EditText etProductName, etProductDescription, etProductPrice;
@@ -30,18 +28,14 @@ public class ProductAddActivity extends AppCompatActivity {
     private Button btnSave;
     private DatabaseHelper databaseHelper;
     List<MarketModel> lstMarkets;
-    private Button btnGoToList;
-    Intent intent;
+    private ImageView ivExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_product_add);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.productBackButton);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        this.setFinishOnTouchOutside(true);
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -50,6 +44,7 @@ public class ProductAddActivity extends AppCompatActivity {
         etProductPrice = (EditText) findViewById(R.id.etProductPrice);
         spProductMarket = (Spinner) findViewById(R.id.spProductMarket);
         btnSave = (Button) findViewById(R.id.btnSave);
+        ivExit = (ImageView) findViewById(R.id.ivExit);
 
         loadSpinnerData();
 
@@ -62,22 +57,19 @@ public class ProductAddActivity extends AppCompatActivity {
                     Double price = TextUtils.isEmpty(etProductPrice.getText().toString()) ? 0 : Double.parseDouble(etProductPrice.getText().toString()) ;
                     product = new ProductModel(etProductName.getText().toString().trim(), etProductDescription.getText().toString().trim(), price, (int) ((MarketModel) spProductMarket.getSelectedItem()).getId());
                     databaseHelper.createProduct(product);
-                    //Toast.makeText(ProductAddActivity.this, "Saved Successfully!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(ProductAddActivity.this, ProductActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 }
             }
         });
 
-        btnGoToList = (Button) findViewById(R.id.btnGoToList);
-
-        btnGoToList.setOnClickListener(new View.OnClickListener() {
+        ivExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity();
+                finish();
             }
         });
+
     }
 
     private void loadSpinnerData(){
@@ -104,50 +96,5 @@ public class ProductAddActivity extends AppCompatActivity {
 
     private void ShowMandatory(){
         Toast.makeText(this, R.string.nameMandatory, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //Intent intent;
-        switch(item.getItemId()){
-            case R.id.menuProduct:
-                ProductActivity();
-                break;
-
-            case R.id.menuMarket:
-                MarketActivity();
-                break;
-
-            case R.id.menuAbout:
-                Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.goToList:
-                MainActivity();
-                break;
-        }
-        //return true;
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void MainActivity(){
-        intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    private void MarketActivity(){
-        intent = new Intent(this, MarketActivity.class);
-        startActivity(intent);
-    }
-
-    private void ProductActivity(){
-        intent = new Intent(this, ProductActivity.class);
-        startActivity(intent);
     }
 }
