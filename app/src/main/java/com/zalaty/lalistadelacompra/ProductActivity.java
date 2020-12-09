@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
 import com.zalaty.lalistadelacompra.adapter.ProductAdapter;
@@ -96,17 +95,6 @@ public class ProductActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //Intent intent;
         switch(item.getItemId()){
-/*            case R.id.menuProduct:
-                ProductActivity();
-                break;
-
-            case R.id.menuMarket:
-                MarketActivity();
-                break;
-
-            case R.id.menuAbout:
-                Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
-                break;*/
             case R.id.goToList:
                 MainActivity();
                 break;
@@ -114,7 +102,7 @@ public class ProductActivity extends AppCompatActivity {
                 info();
                 break;
         }
-        //return true;
+
         return super.onOptionsItemSelected(item);
     }
 

@@ -1,15 +1,8 @@
 package com.zalaty.lalistadelacompra;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -74,7 +67,7 @@ public class ProductUpdateDeleteActivity extends Activity {
                     product.setPrice(Double.parseDouble(etProductPrice.getText().toString()));
                     product.setMarketId((int) ((MarketModel) spProductMarket.getSelectedItem()).getId());
                     databaseHelper.updateProduct(product);
-                    Intent intent = new Intent(ProductUpdateDeleteActivity.this, MainActivity.class);
+                    Intent intent = new Intent(ProductUpdateDeleteActivity.this, ProductActivity.class);
                     startActivity(intent);
                 }
             }
@@ -84,7 +77,7 @@ public class ProductUpdateDeleteActivity extends Activity {
             @Override
             public void onClick(View v) {
                 databaseHelper.deleteProduct(product.getId());
-                Intent intent = new Intent(ProductUpdateDeleteActivity.this, MainActivity.class);
+                Intent intent = new Intent(ProductUpdateDeleteActivity.this, MarketActivity.class);
                 startActivity(intent);
             }
         });

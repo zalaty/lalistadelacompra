@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +19,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
 import com.zalaty.lalistadelacompra.adapter.ListAdapter;
@@ -85,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 databaseHelper.deleteList((listModelArrayList.get(position)).getId());
                                 LoadList(0);
+                                loadSpinnerData();
 
                             }
                         })
@@ -154,19 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //Intent intent;
         switch(item.getItemId()){
-/*            case R.id.menuProduct:
-                ProductActivity();
-                break;
-
-            case R.id.menuMarket:
-                MarketActivity();
-                break;
-
-            case R.id.menuAbout:
-                Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
-                break;*/
             case R.id.goToList:
                 //MainActivity();
                 break;
@@ -174,13 +161,8 @@ public class MainActivity extends AppCompatActivity {
                 info();
                 break;
         }
-        //return true;
-        return super.onOptionsItemSelected(item);
-    }
 
-    private void MainActivity(){
-        intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 
     private void MarketActivity(){
@@ -228,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
         infoDialogView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //your business logic
                 infoDialog.dismiss();
             }
         });

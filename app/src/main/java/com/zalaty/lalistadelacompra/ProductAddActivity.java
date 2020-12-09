@@ -3,12 +3,7 @@ package com.zalaty.lalistadelacompra;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -62,7 +57,7 @@ public class ProductAddActivity extends Activity {
                     Double price = TextUtils.isEmpty(etProductPrice.getText().toString()) ? 0 : Double.parseDouble(etProductPrice.getText().toString()) ;
                     product = new ProductModel(etProductName.getText().toString().trim(), etProductDescription.getText().toString().trim(), price, (int) ((MarketModel) spProductMarket.getSelectedItem()).getId());
                     databaseHelper.createProduct(product);
-                    Intent intent = new Intent(ProductAddActivity.this, MainActivity.class);
+                    Intent intent = new Intent(ProductAddActivity.this, ProductActivity.class);
                     startActivity(intent);
                 }
             }

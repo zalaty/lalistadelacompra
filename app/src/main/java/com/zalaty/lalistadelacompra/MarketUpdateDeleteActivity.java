@@ -1,15 +1,8 @@
 package com.zalaty.lalistadelacompra;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -17,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.zalaty.lalistadelacompra.R;
 import com.zalaty.lalistadelacompra.database.DatabaseHelper;
 import com.zalaty.lalistadelacompra.model.MarketModel;
 
@@ -62,7 +54,7 @@ public class MarketUpdateDeleteActivity extends Activity {
                     market.setZone(etMarketZone.getText().toString().trim());
 
                     databaseHelper.updateMarket(market);
-                    Intent intent = new Intent(MarketUpdateDeleteActivity.this, MainActivity.class);
+                    Intent intent = new Intent(MarketUpdateDeleteActivity.this, MarketActivity.class);
                     startActivity(intent);
                 }
             }
@@ -72,7 +64,7 @@ public class MarketUpdateDeleteActivity extends Activity {
             @Override
             public void onClick(View v) {
                 databaseHelper.deleteMarket(market.getId());
-                Intent intent = new Intent(MarketUpdateDeleteActivity.this, MainActivity.class);
+                Intent intent = new Intent(MarketUpdateDeleteActivity.this, MarketActivity.class);
                 startActivity(intent);
             }
         });
